@@ -1,6 +1,7 @@
 import data
 import build_data
 import unittest
+from hw3 import *
 
 
 # These two values are defined to support testing below. The
@@ -180,10 +181,17 @@ class TestCases(unittest.TestCase):
 
     # Part 1
     # test population_total
-
+    def test_population_total(self):
+        p1 = population_total(get_data())
+        self.assertEqual(318857056, p1)
+        self.assertNotEqual(1, p1)
     # Part 2
     # test filter_by_state
-
+    def test_filter_by_state(self):
+        f1 = filter_by_state(get_data(), 'CA')
+        f2 = filter_by_state(get_data(), 'ZZ')
+        self.assertNotEqual([], f1)
+        self.assertEqual([], f2)
     # Part 3
     # test population_by_education
     # test population_by_ethnicity

@@ -1,6 +1,6 @@
 '''
 Hello! Thank you for downloading a CORGIS library. However, you do not
-need to open this file. Instead you should make your own Python file and
+need to open this file. Instead, you should make your own Python file and
 add the following line:
 
 import county_demographics
