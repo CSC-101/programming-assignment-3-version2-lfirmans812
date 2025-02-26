@@ -1,6 +1,7 @@
 import data
 import build_data
 import unittest
+from hw3 import *
 
 
 # These two values are defined to support testing below. The
@@ -180,28 +181,92 @@ class TestCases(unittest.TestCase):
 
     # Part 1
     # test population_total
-
+    def test_population_total(self):
+        p1 = population_total(get_data())
+        self.assertEqual(318857056, p1)
+        self.assertNotEqual(1, p1)
     # Part 2
     # test filter_by_state
-
+    def test_filter_by_state(self):
+        f1 = filter_by_state(get_data(), 'CA')
+        f2 = filter_by_state(get_data(), 'ZZ')
+        self.assertNotEqual([], f1)
+        self.assertEqual([], f2)
     # Part 3
     # test population_by_education
+    def test_population_by_education(self):
+        t1 = population_by_education(get_data(), "Bachelor's Degree or Higher")
+        self.assertEqual(92216021.02199993, t1)
+        t2 = population_by_ethnicity(get_data(), "GED")
+        self.assertEqual(0, t2)
+
     # test population_by_ethnicity
+    def test_population_by_ethnicity(self):
+        s1 = population_by_ethnicity(get_data(), "Two or More Races")
+        self.assertEqual(7991261.383000009, s1)
+        s2 = population_by_ethnicity(get_data(), "Wasian")
+        self.assertEqual(0, s2)
     # test population_below_poverty_level
+    def test_population_below_poverty_level(self):
+        p1 = population_below_poverty_level(get_data())
+        self.assertEqual(48996488.47399998, p1)
+        self.assertNotEqual(0, p1)
 
     # Part 4
     # test percent_by_education
+    def test_percent_by_education(self):
+        e1 = percent_by_education(get_data(), 'High School or Higher')
+        self.assertEqual(85.94008207646526, e1)
+        e2 = percent_by_education(get_data(), "Bachelor's Degree or Higher")
+        self.assertEqual(28.920803001455276, e2)
     # test percent_by_ethnicity
+    def test_percent_by_ethnicity(self):
+        eth1 = percent_by_ethnicity(get_data(), "Two or More Races")
+        self.assertEqual(2.5062206504848397, eth1)
+        eth2 = percent_by_ethnicity(get_data(), "Wasian")
+        self.assertEqual(0.0, eth2)
     # test percent_below_poverty_level
-
+    def test_percent_below_poverty(self):
+        pov1 = percent_below_poverty_level(get_data())
+        self.assertEqual(15.366286413307403, pov1)
+        self.assertNotEqual(0, pov1)
     # Part 5
     # test education_greater_than
+    def test_education_greater_than(self):
+        edu1 = education_greater_than(get_data(), "Bachelor's Degree or Higher", 5)
+        self.assertNotEqual([], edu1)
+        edu2 = education_greater_than(get_data(), "Bachelor's Degree or Higher", 100)
+        self.assertEqual([], edu2)
     # test education_less_than
+    def test_education_less_than(self):
+        edu3 = education_less_than(get_data(), "Bachelor's Degree or Higher", 5)
+        self.assertNotEqual([], edu3)
+        edu4 = education_less_than(get_data(), "Bachelor's Degree or Higher", 0.0001)
+        self.assertEqual([], edu4)
     # test ethnicity_greater_than
+    def test_ethnicity_greater_than(self):
+        eth1 = ethnicity_greater_than(get_data(), "White Alone", 10)
+        self.assertNotEqual([], eth1)
+        eth2 = ethnicity_greater_than(get_data(), "Wasian", 10)
+        self.assertEqual([], eth2)
     # test ethnicity_less_than
+    def test_ethnicity_less_than(self):
+        eth3 = ethnicity_less_than(get_data(), "White Alone", 10)
+        self.assertNotEqual([], eth3)
+        eth4 = ethnicity_less_than(get_data(), "Wasian", 10)
+        self.assertEqual([], eth4)
     # test below_poverty_level_greater_than
+    def test_below_poverty_level_greater(self):
+        pov1 = below_poverty_level_greater_than(get_data(), 10)
+        self.assertNotEqual([], pov1)
+        pov2 = below_poverty_level_greater_than(get_data(), 99)
+        self.assertEqual([], pov2)
     # test below_poverty_level_less_than
-
+    def test_below_poverty_level_less(self):
+        pov3 = below_poverty_level_less_than(get_data(), 0)
+        self.assertEqual([], pov3)
+        pov4 = below_poverty_level_less_than(get_data(), 10)
+        self.assertNotEqual([], pov4)
 
 
 if __name__ == '__main__':
